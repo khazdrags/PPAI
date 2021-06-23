@@ -1,5 +1,5 @@
 
-from usuario import Usuario
+from clases.usuario import Usuario
 
 
 class Sesion ():

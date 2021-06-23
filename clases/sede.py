@@ -1,9 +1,7 @@
+from clases.exposicion import Exposicion
+from clases.detalle_exposicion import Detalle_exposicion
 
-from exposicion import Exposicion
-from detalle_exposicion import Detalle_exposicion
-from empleado import Empleado
-import reserva_visita
-
+import clases.reserva_visita
 
 class Sede():
     def __init__(self, cant_maxima_visitantes, cant_max_por_guia, nombre, exposicion, empleado):
@@ -68,6 +66,8 @@ class Sede():
             return True
         return False
 
+    #esta mal... deberias calcular usando la hora de la reserva
+    #reserva q seria?
     def buscar_reserva_para_fecha_hora(self, reserva):
         cantidad_alumno = 0
         for alumno in reserva:

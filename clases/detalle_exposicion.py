@@ -1,8 +1,7 @@
-from exposicion import Exposicion
-import obra
+from clases.obra import Obra
+import clases.exposicion as exposicion
 
-
-class Detalle_exposicion(Exposicion):
+class Detalle_exposicion(exposicion.Exposicion):
     def __init__(self, lugar_asignado, obra):
         self.lugar_asignado = lugar_asignado
         self.obra = obra
@@ -23,4 +22,4 @@ class Detalle_exposicion(Exposicion):
 
     #
     def buscar_durac_ext_obra(self):
-        return obra.Obra.get_duracion_extendida(self.obra)
+        return Obra.get_duracion_extendida(self.obra)

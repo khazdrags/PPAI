@@ -1,7 +1,7 @@
-from sede import Sede
+from clases.sede import Sede
 import asignacion_visita
-from horario_empleado import Horario_empleado
-from cargo import Cargo
+from clases.horario_empleado import Horario_empleado
+from clases.cargo import Cargo
 
 
 class Empleado():
@@ -101,7 +101,7 @@ class Empleado():
     def set_horario_empleado(self, horario_empleado):
         self.horario_empleado = horario_empleado
 
-    #
+    #no anda
     def es_de_sede(self, sede_selececionada):
         for i in sede_selececionada.empleado:
             if i == self:

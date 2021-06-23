@@ -1,6 +1,7 @@
-from publico_destino import Publico_destino
-from tipo_exposicion import Tipo_exposicion
-from detalle_exposicion import Detalle_exposicion
+from clases.publico_destino import Publico_destino
+from clases.tipo_exposicion import Tipo_exposicion
+'''checar esto'''
+#from clases.detalle_exposicion import Detalle_exposicion
 
 
 class Exposicion():
@@ -15,7 +16,8 @@ class Exposicion():
         self.nombre = nombre
         self.tipo_exposicion = tipo_exposicion
         self.publico_destino = publico_destino
-        self.detalle_exposicion = detalle_exposicion
+        '''checar esto'''
+        #self.detalle_exposicion = detalle_exposicion
 
     # Metodos Get
     def get_fecha_fin(self):
@@ -96,6 +98,6 @@ class Exposicion():
                 nombre = Publico_destino.get_nombre(publico)
                 publico_desti.append(nombre)
 
-    #
-    def buscar_dur_extendida_obra(self):
-        return Detalle_exposicion.buscar_dur_extendida_obra(self.detalle_exposicion)
+    '''checar esto'''
+    #def buscar_dur_extendida_obra(self):
+        #return Detalle_exposicion.buscar_dur_extendida_obra(self.detalle_exposicion)
