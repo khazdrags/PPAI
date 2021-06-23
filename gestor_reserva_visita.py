@@ -57,6 +57,7 @@ class Gestor_reserva_visita:
     def tomar_fecha_hora_actual(self):
         self.fecha_hora_actual= datetime.now()
     
+    #ver fecha actual
     def buscar_exposiciones_temp_vigentes(self):
         return sede.Sede.buscar_exposiciones(self.sede_seleccionada)
 
