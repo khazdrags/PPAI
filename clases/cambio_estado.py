@@ -1,16 +1,13 @@
 
-from usuario import Usuario
-
-
-class Sesion ():
-    def __init__(self, fecha_fin, fecha_inicio, hora_fin, hora_inicio, usuario):
+class Cambio_estado():
+    def __init__(self, fecha_fin, fecha_inicio, hora_fin, hora_inicio, estado):
         self.fecha_fin = fecha_fin
         self.fecha_inicio = fecha_inicio
         self.hora_fin = hora_fin
         self.hora_inicio = hora_inicio
-        self.usuario = usuario
+        self.estado = estado
 
-    # Metodo Get
+    # Metodos Get
     def get_fecha_fin(self):
         return self.fecha_fin
 
@@ -23,8 +20,8 @@ class Sesion ():
     def get_hora_inicio(self):
         return self.hora_inicio
 
-    def get_usuario(self):
-        return self.usuario
+    def get_estado(self):
+        return self.estado
 
     # Metodos Set
     def set_fecha_fin(self, fecha_fin):
@@ -39,9 +36,9 @@ class Sesion ():
     def set_hora_inicio(self, hora_inicio):
         self.hora_inicio = hora_inicio
 
-    def set_usuario(self, usuario):
-        self.usuario = usuario
+    def set_estado(self, estado):
+        self.estado = estado
 
     #
-    def get_empleado_en_sesion(self):
-        return Usuario.get_nombre(self)
+    def conocer_estado(self):
+        return self.estado

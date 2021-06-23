@@ -1,6 +1,7 @@
 
 class Rerserva_visita():
-    def __init__(self, cantidad_alumnos, cantidad_alumno_confirmada, duracion_estimada, fecha_hora_creacion, fecha_reserva, hora_final_real, hora_inicio_real, hora_reserva, numero_reserva):
+    def __init__(self, cantidad_alumnos, cantidad_alumno_confirmada, duracion_estimada, fecha_hora_creacion, fecha_reserva,
+                 hora_final_real, hora_inicio_real, hora_reserva, numero_reserva, escuela, cambio_estado, sede, nombre_exposicion, empleado, asignacion_visita):
         self.cantidad_alumnos = cantidad_alumnos
         self.cantidad_alumno_confirmada = cantidad_alumno_confirmada
         self.duracion_estimada = duracion_estimada
@@ -10,6 +11,12 @@ class Rerserva_visita():
         self.hora_inicio_real = hora_inicio_real
         self.hora_reserva = hora_reserva
         self.numero_reserva = numero_reserva
+        self.escuela = escuela
+        self.cambio_estado = cambio_estado
+        self.sede = sede
+        self.nombre_exposicion = nombre_exposicion
+        self.empleado = empleado
+        self.asignacion_visita = asignacion_visita
 
     # Metodo Get
     def get_cantidad_alumnos(self):
@@ -39,7 +46,26 @@ class Rerserva_visita():
     def get_numero_reserva(self):
         return self.numero_reserva
 
+    def get_escuela(self):
+        return self.escuela
+
+    def get_cambio_estado(self):
+        return self.cambio_estado
+
+    def get_sede(self):
+        return self.sede
+
+    def get_nombre_exposicion(self):
+        return self.nombre_exposicion
+
+    def get_empleado(self):
+        return self.empleado
+
+    def get_asignacion_visita(self):
+        return self.asignacion_visita
+
     # Metodo Set
+
     def set_cantidad_alumnos(self, cantidad_alumnos):
         self.cantidad_alumnos = cantidad_alumnos
 
@@ -66,3 +92,22 @@ class Rerserva_visita():
 
     def set_numero_reserva(self, numero_reserva):
         self.numero_reserva = numero_reserva
+
+    def set_escuela(self, escuela):
+        self.escuela = escuela
+
+    def set_cambio_estado(self, cambio_estado):
+        self.cambio_estado = cambio_estado
+
+    def set_sede(self, sede):
+        self.sede = sede
+
+    def set_nombre_exposicion(self, nombre_exposicion):
+        self.nombre_exposicion = nombre_exposicion
+
+    def set_asignacion_visita(self, asignacion_visita):
+        self.asignacion_visita = asignacion_visita
+
+    #
+    def obtener_alumnos_reserva(self):
+        return ([self.get_fecha_reserva(), self.get_hora_reserva, self.get_cantidad_alumnos])

@@ -1,6 +1,7 @@
 
 class Obra():
-    def __init__(self, alto, ancho, codigo_sensor, descripcion, duracion_extendida, duracion_resumida, fecha_creacion, fecha_primer_ingreso, nombre_obra, peso, valuacion):
+    def __init__(self, alto, ancho, codigo_sensor, descripcion, duracion_extendida, duracion_resumida, fecha_creacion, fecha_primer_ingreso,
+                 nombre_obra, peso, valuacion, empleado):
         self.alto = alto
         self.ancho = ancho
         self.codigo_sensor = codigo_sensor
@@ -12,6 +13,7 @@ class Obra():
         self.nombre_obra = nombre_obra
         self.peso = peso
         self.valuacion = valuacion
+        self.empleado = empleado
 
     # Metodos Get
     def get_alto(self):
@@ -47,6 +49,9 @@ class Obra():
     def get_valuacion(self):
         return self.valuacion
 
+    def get_empleado(self):
+        return self.empleado
+
     # Metodos Set
     def set_alto(self, alto):
         self.alto = alto
@@ -80,3 +85,6 @@ class Obra():
 
     def set_valuacion(self, valuacion):
         self.valuacion = valuacion
+
+    def set_empleado(self, empleado):
+        self.empleado = empleado

@@ -1,9 +1,10 @@
 
 class Usuario():
-    def __init__(self, caducidad, contrasena, nombre):
+    def __init__(self, caducidad, contrasena, nombre, empleado):
         self.caducidad = caducidad
         self.contrasena = contrasena
         self.nombre = nombre
+        self.empleado = empleado
 
     # Metodo Get
     def get_caducidad(self):
@@ -15,6 +16,9 @@ class Usuario():
     def get_nombre(self):
         return self.nombre
 
+    def get_empleado(self):
+        return self.empleado
+
     # Metodo Set
     def set_caducidad(self, caducidad):
         self.caducidad = caducidad
@@ -24,3 +28,6 @@ class Usuario():
 
     def set_nombre(self, nombre):
         self.nombre = nombre
+
+    def set_empleado(self, empleado):
+        self.empleado = empleado
