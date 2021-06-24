@@ -1,8 +1,7 @@
 from clases.publico_destino import Publico_destino
 from clases.tipo_exposicion import Tipo_exposicion
 '''checar esto'''
-from detalle_exposicion import Detalle_exposicion
-
+import clases.detalle_exposicion as detalle
 
 class Exposicion():
     def __init__(self, fecha_fin, fecha_fin_replanificada, fecha_inicio, fecha_inicio_replanificada, hora_apertura, hora_cierre, nombre,
@@ -101,5 +100,7 @@ class Exposicion():
 
     '''checar esto'''
     def buscar_dur_extendida_obra(self):
-        '''no seria un for aca?'''
-        return Detalle_exposicion.buscar_dur_extendida_obra(self.detalle_exposicion)
+        for i in self.detalle_exposicion:
+            x= detalle.Detalle_exposicion.buscar_durac_ext_obra(i)
+        return x
+
