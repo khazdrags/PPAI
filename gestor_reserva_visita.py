@@ -13,6 +13,7 @@ class Gestor_reserva_visita:
         duracion_estimada=''
         #empleados disponibles? ver cuando usar
         empleados_disponibles=''
+        
         escuela_seleccionada=''
         estado=''
         exposiciones_seleccionadas=''

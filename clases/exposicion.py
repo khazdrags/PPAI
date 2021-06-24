@@ -101,6 +101,7 @@ class Exposicion():
     '''checar esto'''
     def buscar_dur_extendida_obra(self):
         for i in self.detalle_exposicion:
+            []
             x= detalle.Detalle_exposicion.buscar_durac_ext_obra(i)
-        return x
+        return []
 
