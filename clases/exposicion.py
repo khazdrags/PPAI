@@ -1,7 +1,7 @@
 from clases.publico_destino import Publico_destino
 from clases.tipo_exposicion import Tipo_exposicion
 '''checar esto'''
-#from clases.detalle_exposicion import Detalle_exposicion
+from detalle_exposicion import Detalle_exposicion
 
 
 class Exposicion():
@@ -17,7 +17,7 @@ class Exposicion():
         self.tipo_exposicion = tipo_exposicion
         self.publico_destino = publico_destino
         '''checar esto'''
-        #self.detalle_exposicion = detalle_exposicion
+        self.detalle_exposicion = detalle_exposicion
 
     # Metodos Get
     def get_fecha_fin(self):
@@ -90,6 +90,7 @@ class Exposicion():
 
     #
     def get_temp_vignetes(self):
+        '''horario no tiene sentido aca'''
         publico_desti = []
         horario = ''
         if Tipo_exposicion.es_temporal(self.get_tipo_exposicion()):
@@ -99,5 +100,6 @@ class Exposicion():
                 publico_desti.append(nombre)
 
     '''checar esto'''
-    #def buscar_dur_extendida_obra(self):
-        #return Detalle_exposicion.buscar_dur_extendida_obra(self.detalle_exposicion)
+    def buscar_dur_extendida_obra(self):
+        '''no seria un for aca?'''
+        return Detalle_exposicion.buscar_dur_extendida_obra(self.detalle_exposicion)

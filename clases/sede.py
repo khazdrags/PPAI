@@ -1,7 +1,6 @@
 from clases.exposicion import Exposicion
-from clases.detalle_exposicion import Detalle_exposicion
 
-import clases.reserva_visita
+import clases.reserva_visita as reserva_visita
 
 class Sede():
     def __init__(self, cant_maxima_visitantes, cant_max_por_guia, nombre, exposicion, empleado):
