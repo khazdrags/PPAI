@@ -5,8 +5,7 @@ import clases.detalle_exposicion as detalle
 
 class Exposicion():
     def __init__(self, fecha_fin, fecha_fin_replanificada, fecha_inicio, fecha_inicio_replanificada, hora_apertura, hora_cierre, nombre,
-                 tipo_exposicion, publico_destino, detalle_exposicion):
-        self.fecha_fin = fecha_fin
+                 detalle_exposicion,tipo_exposicion, publico_destino):
         self.fecha_fin_replanificada = fecha_fin_replanificada
         self.fecha_inicio = fecha_inicio
         self.fecha_inicio_replanificada = fecha_inicio_replanificada
@@ -92,7 +91,7 @@ class Exposicion():
         '''horario no tiene sentido aca'''
         array=[]
         publico_desti = []
-        if Tipo_exposicion.es_temporal(self.get_tipo_exposicion()):
+        if Tipo_exposicion.es_temporal(self.tipo_exposicion):
             if self.fecha_fin>=fecha_hora_actual:
                 horario = self.get_horario_habilitado()
                 nombre = self.get_nombre()

@@ -20,7 +20,7 @@ class Tipo_exposicion():
 
     #
     def es_temporal(tipo_expo):
-        if Tipo_exposicion.get_nombre(tipo_expo) == 'temporal':
+        if tipo_expo.get_nombre() == 'temporal':
             return True
         else:
             return False
