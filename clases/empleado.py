@@ -1,5 +1,5 @@
 from clases.sede import Sede
-import asignacion_visita
+from clases.asignacion_visita import Asignacion_visita
 from clases.horario_empleado import Horario_empleado
 from clases.cargo import Cargo
 

@@ -43,10 +43,10 @@ class Sede():
         self.empleado = empleado
 
     # Este metodo guarda en una lista todas las exposiciones viegentes
-    def buscar_exposiciones(self):
+    def buscar_exposiciones(self,fecha_hora_actual):
         exposiciones = []
         for exposicion in self.exposicion:
-            exposicion_vigente = Exposicion.get_temp_vignetes(exposicion)
+            exposicion_vigente = Exposicion.get_temp_vigentes(exposicion,fecha_hora_actual)
             exposiciones.append(exposicion_vigente)
         return exposiciones
 

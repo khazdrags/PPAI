@@ -30,6 +30,9 @@ class Gestor_reserva_visita:
         #esto no se si estaria encapsulado o si lo buscamos despues
         sesion=''
     
+    #def tomar_reg_reserva_visita(self):
+        #return
+    
     def buscar_escuelas(self):
         array_contador=[]
         for i in BD.array_escuelas:
@@ -66,7 +69,7 @@ class Gestor_reserva_visita:
     
     #ver fecha actual
     def buscar_exposiciones_temp_vigentes(self):
-        return sede.Sede.buscar_exposiciones(self.sede_seleccionada)
+        return sede.Sede.buscar_exposiciones(self.sede_seleccionada,self.fecha_hora_actual)
 
     def tomar_exposiciones(self,exposiciones_seleccionadas):
         self.exposiciones_seleccionadas=exposiciones_seleccionadas

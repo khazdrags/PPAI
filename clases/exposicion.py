@@ -88,15 +88,20 @@ class Exposicion():
         return 'Desde' + str(inicio) + 'Hasta ' + str(cierre)
 
     #
-    def get_temp_vignetes(self):
+    def get_temp_vigentes(self,fecha_hora_actual):
         '''horario no tiene sentido aca'''
+        array=[]
         publico_desti = []
-        horario = ''
         if Tipo_exposicion.es_temporal(self.get_tipo_exposicion()):
-            horario = self.get_horario_habilitado()
-            for publico in self.publico_destino:
-                nombre = Publico_destino.get_nombre(publico)
-                publico_desti.append(nombre)
+            if self.fecha_fin>=fecha_hora_actual:
+                horario = self.get_horario_habilitado()
+                nombre = self.get_nombre()
+                for publico in self.publico_destino:
+                   publico_desti.append(Publico_destino.get_nombre(publico))
+                x=[[nombre],[publico_desti],[horario]]
+                array.append(x)
+        return array 
+        #busca y muestra temp vigentes para sede, su publico destino y sus horarios habilidatos
 
     '''checar esto'''
     def buscar_dur_extendida_obra(self):
