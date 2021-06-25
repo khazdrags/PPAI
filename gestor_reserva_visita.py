@@ -3,8 +3,12 @@ import clases.escuela as escuela
 import clases.sede as sede
 import clases.tipo_visita as t_v
 import clases.sesion as sesion
-import clases.estado,clases.obra,clases.reserva_visita,clases.sede,clases.usuario
+import clases.obra
 import base_de_datos.base_de_datos as BD
+import clases.reserva_visita
+import clases.usuario
+import clases.estado
+
 
 class Gestor_reserva_visita:
     def __init__(self):
@@ -36,14 +40,17 @@ class Gestor_reserva_visita:
     def buscar_escuelas(self):
         array_contador=[]
         for i in BD.array_escuelas:
-            array_contador.append(escuela.Escuela.get_nombre(i))
+            nombre_escuela = escuela.Escuela.get_nombre(i)
+            array_contador.append(nombre_escuela)
         return array_contador
 
     def tomar_escuela(self,escuela_seleccionada):
         self.escuela_seleccionada=escuela_seleccionada
+        return self.escuela_seleccionada
 
     def tomar_cant_visitantes(self,cant_visitantes):
         self.cant_seleccionada=cant_visitantes
+        return self.cant_seleccionada
     
     def buscar_sede(self):
         array_contador=[]
@@ -58,7 +65,8 @@ class Gestor_reserva_visita:
     def buscar_tipo_visita(self):
         array_contador=[]
         for i in BD.array_tipo_visita:
-            array_contador.append(t_v.Tipo_Visita.get_nombre(i))
+            nombre_tipo_visita = t_v.Tipo_Visita. get_nombre(i)
+            array_contador.append(nombre_tipo_visita)
         return array_contador
     
     def tomar_tipo_visita(self,tipo_visita_seleccionada):
@@ -66,6 +74,7 @@ class Gestor_reserva_visita:
     
     def tomar_fecha_hora_actual(self):
         self.fecha_hora_actual= datetime.now()
+        return self.fecha_hora_actual
     
     #ver fecha actual
     def buscar_exposiciones_temp_vigentes(self):
@@ -102,3 +111,14 @@ class Gestor_reserva_visita:
     def buscar_empleado_logueado(self):
         return sesion.Sesion.get_empleado_en_sesion(self.sesion)
     
+
+
+gestorReservaVisita1=Gestor_reserva_visita()
+print(gestorReservaVisita1.tomar_cant_visitantes(50))
+print(gestorReservaVisita1.buscar_sede())
+print(gestorReservaVisita1.tomar_escuela('Colegio Parroquial San Francisco De Asis'))
+print(gestorReservaVisita1.tomar_sede('sede 1'))
+print(gestorReservaVisita1.buscar_tipo_visita())
+print(gestorReservaVisita1.tomar_tipo_visita('escolar'))
+print(gestorReservaVisita1.tomar_fecha_hora_actual())
+print(gestorReservaVisita1.buscar_exposiciones_temp_vigentes())
