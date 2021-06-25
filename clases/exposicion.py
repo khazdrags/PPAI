@@ -110,3 +110,4 @@ class Exposicion():
             x= detalle.Detalle_exposicion.buscar_durac_ext_obra(i)
         return []
 
+    'hola'
