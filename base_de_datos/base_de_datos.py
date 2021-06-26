@@ -78,10 +78,13 @@ asignacion_visita2=clases.asignacion_visita.Asignacion_visita('20/07/2021','20/0
 sede1 = clases.sede.Sede(
     400, 80, 'sede 1', [exposicion1, exposicion2], [empleado1])
 sede2 = clases.sede.Sede(
-    400, 80, 'sede 2', [exposicion1, exposicion2], [empleado2])
+    100, 80, 'sede 2', [exposicion1, exposicion2], [empleado2])
 
 escuela1=clases.escuela.Escuela('villa del soto','escuela@.com', 'escuela n1', '351987987', '351654654')
 escuela2=clases.escuela.Escuela('alcira gigena','escuela3@.com', 'escuela n2', '358988582', '358644457')
+escuela3=clases.escuela.Escuela('cordoba','escuela2@.com', 'escuela n3', '358988383', '358644757')
+escuela4=clases.escuela.Escuela('rio cuarto','escuela4@.com', 'escuela n4', '358388382', '358544457')
+escuela5=clases.escuela.Escuela('berrotaran','escuela5@.com', 'escuela n5', '358988484', '358444457')
 
 tipo_visita1=clases.tipo_visita.Tipo_Visita('escolar')
 tipo_visita2=clases.tipo_visita.Tipo_Visita('tecnica')
@@ -90,6 +93,6 @@ usuario1=clases.usuario.Usuario(1, 'hola', 'muñoz',empleado1)
 
 sesion1=clases.sesion.Sesion('17/06/2021', '14/06/2020', '08:02', '08:00', usuario1)
 
-array_escuelas = [escuela1,escuela2]
+array_escuelas = [escuela1,escuela2,escuela3,escuela4,escuela5]
 array_sede = [sede1,sede2]
 array_tipo_visita = [tipo_visita1,tipo_visita2]

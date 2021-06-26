@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import (QLabel, QRadioButton, QPushButton, QVBoxLayout, QAp
 from interfaz.untitled import Ui_Dialog as screen1
 from interfaz.interfaz import Ui_Registrarreserva as screen2
 
-gestorReservaVisita1=gestor.Gestor_reserva_visita()
+
 
 class HelloWindow(QtWidgets.QMainWindow, screen1):
     switch_window1 = QtCore.pyqtSignal() # Jump signal
@@ -23,6 +23,7 @@ class LoginWindow(QtWidgets.QMainWindow, screen2):
     def __init__(self):
         super(LoginWindow, self).__init__()
         self.setupUi(self)
+        self.mostrar_escuelas()
         
     
 class Controller:

@@ -9,7 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import gestor_reserva_visita as gestor
+import base_de_datos.base_de_datos as BD
 
 class Ui_Registrarreserva(object):
     def setupUi(self, Registrarreserva):
@@ -27,37 +28,51 @@ class Ui_Registrarreserva(object):
         font.setPointSize(10)
         self.label.setFont(font)
         self.label.setObjectName("label")
+        
         self.comboBoxEscuela = QtWidgets.QComboBox(Registrarreserva)
         self.comboBoxEscuela.setGeometry(QtCore.QRect(30, 50, 251, 31))
         self.comboBoxEscuela.setObjectName("comboBoxEscuela")
+        self.comboBoxEscuela.activated.connect(self.tomar_seleccion_escuela)
+        
+        
         self.label_2 = QtWidgets.QLabel(Registrarreserva)
         self.label_2.setGeometry(QtCore.QRect(340, 20, 141, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
+        
         self.spinBoxCantVisit = QtWidgets.QSpinBox(Registrarreserva)
         self.spinBoxCantVisit.setGeometry(QtCore.QRect(340, 50, 191, 31))
         self.spinBoxCantVisit.setMaximum(200)
         self.spinBoxCantVisit.setObjectName("spinBoxCantVisit")
+        self.spinBoxCantVisit.valueChanged.connect(self.tomar_cantidad_visitantes)
+        self.spinBoxCantVisit.valueChanged.connect(self.mostrar_sedes)
+        
         self.label_3 = QtWidgets.QLabel(Registrarreserva)
         self.label_3.setGeometry(QtCore.QRect(30, 90, 171, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
+        
         self.comboBoxSede = QtWidgets.QComboBox(Registrarreserva)
         self.comboBoxSede.setGeometry(QtCore.QRect(30, 120, 251, 31))
         self.comboBoxSede.setObjectName("comboBoxSede")
+        self.comboBoxSede.activated.connect(self.tomar_sede)
+        self.comboBoxSede.activated.connect(self.mostrar_tipo_visita)
+        
         self.label_4 = QtWidgets.QLabel(Registrarreserva)
         self.label_4.setGeometry(QtCore.QRect(340, 90, 201, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
+        
         self.comboBoxTipoVisita = QtWidgets.QComboBox(Registrarreserva)
         self.comboBoxTipoVisita.setGeometry(QtCore.QRect(340, 120, 191, 31))
         self.comboBoxTipoVisita.setObjectName("comboBoxTipoVisita")
+        
         self.label_5 = QtWidgets.QLabel(Registrarreserva)
         self.label_5.setGeometry(QtCore.QRect(30, 150, 111, 31))
         font = QtGui.QFont()
@@ -76,13 +91,16 @@ class Ui_Registrarreserva(object):
         font.setPointSize(10)
         self.label_8.setFont(font)
         self.label_8.setObjectName("label_8")
+        
         self.buttonBox = QtWidgets.QDialogButtonBox(Registrarreserva)
         self.buttonBox.setGeometry(QtCore.QRect(310, 720, 221, 81))
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
+        
         self.timeEditHora = QtWidgets.QTimeEdit(Registrarreserva)
         self.timeEditHora.setGeometry(QtCore.QRect(400, 410, 131, 31))
         self.timeEditHora.setObjectName("timeEditHora")
+        
         self.tableExposiciones = QtWidgets.QTableWidget(Registrarreserva)
         self.tableExposiciones.setGeometry(QtCore.QRect(30, 180, 501, 171))
         self.tableExposiciones.setDragEnabled(False)
@@ -90,12 +108,14 @@ class Ui_Registrarreserva(object):
         self.tableExposiciones.setRowCount(0)
         self.tableExposiciones.setObjectName("tableExposiciones")
         self.tableExposiciones.setColumnCount(0)
+        
         self.tableWidgetGuias = QtWidgets.QTableWidget(Registrarreserva)
         self.tableWidgetGuias.setGeometry(QtCore.QRect(30, 580, 501, 141))
         self.tableWidgetGuias.setAlternatingRowColors(True)
         self.tableWidgetGuias.setColumnCount(0)
         self.tableWidgetGuias.setObjectName("tableWidgetGuias")
         self.tableWidgetGuias.setRowCount(0)
+        
         self.calendarWidget = QtWidgets.QCalendarWidget(Registrarreserva)
         self.calendarWidget.setGeometry(QtCore.QRect(30, 360, 312, 183))
         self.calendarWidget.setGridVisible(False)
@@ -120,3 +140,31 @@ class Ui_Registrarreserva(object):
         self.label_5.setText(_translate("Registrarreserva", "Exposiciones"))
         self.label_7.setText(_translate("Registrarreserva", "Hora"))
         self.label_8.setText(_translate("Registrarreserva", "Guias"))
+
+    def mostrar_escuelas(self):
+        for i in gestor.gestor_reserva_visita_nuevo.buscar_escuelas():
+            self.comboBoxEscuela.addItem(i)
+            
+    def tomar_seleccion_escuela(self):
+        for i in BD.array_escuelas:
+            if i.get_nombre() == self.comboBoxEscuela.currentText():
+                gestor.gestor_reserva_visita_nuevo.tomar_escuela(i)
+    
+    def tomar_cantidad_visitantes(self):
+        gestor.gestor_reserva_visita_nuevo.tomar_cant_visitantes(self.spinBoxCantVisit.value())
+    
+    def mostrar_sedes(self):
+        #aca hay q poner q verifique q sea mayor a null las sedes
+        self.comboBoxSede.clear()
+        for i in gestor.gestor_reserva_visita_nuevo.buscar_sede():
+            self.comboBoxSede.addItem(i)
+            
+    def tomar_sede(self):
+        for i in BD.array_sede:
+            if i.get_nombre() == self.comboBoxEscuela.currentText():
+                gestor.gestor_reserva_visita_nuevo.tomar_sede(i)
+                
+    def mostrar_tipo_visita(self):
+        self.comboBoxTipoVisita.clear()
+        for i in gestor.gestor_reserva_visita_nuevo.buscar_tipo_visita():
+            self.comboBoxTipoVisita.addItem(i)
