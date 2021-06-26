@@ -2,10 +2,12 @@ from clases.publico_destino import Publico_destino
 from clases.tipo_exposicion import Tipo_exposicion
 '''checar esto'''
 import clases.detalle_exposicion as detalle
+from datetime import datetime, date, time, timedelta
 
 class Exposicion():
     def __init__(self, fecha_fin, fecha_fin_replanificada, fecha_inicio, fecha_inicio_replanificada, hora_apertura, hora_cierre, nombre,
                  detalle_exposicion,tipo_exposicion, publico_destino):
+        self.fecha_fin=fecha_fin
         self.fecha_fin_replanificada = fecha_fin_replanificada
         self.fecha_inicio = fecha_inicio
         self.fecha_inicio_replanificada = fecha_inicio_replanificada
@@ -91,13 +93,16 @@ class Exposicion():
         '''horario no tiene sentido aca'''
         array=[]
         publico_desti = []
+        
         if Tipo_exposicion.es_temporal(self.tipo_exposicion):
-            if self.fecha_fin>=fecha_hora_actual:
+            
+            if self.fecha_fin>=fecha_hora_actual.date():
+                
                 horario = self.get_horario_habilitado()
                 nombre = self.get_nombre()
                 for publico in self.publico_destino:
                    publico_desti.append(Publico_destino.get_nombre(publico))
-                x=[[nombre],[publico_desti],[horario]]
+                x=[nombre],publico_desti,[horario]
                 array.append(x)
         return array 
         #busca y muestra temp vigentes para sede, su publico destino y sus horarios habilidatos

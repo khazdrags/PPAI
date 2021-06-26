@@ -72,6 +72,8 @@ class Ui_Registrarreserva(object):
         self.comboBoxTipoVisita = QtWidgets.QComboBox(Registrarreserva)
         self.comboBoxTipoVisita.setGeometry(QtCore.QRect(340, 120, 191, 31))
         self.comboBoxTipoVisita.setObjectName("comboBoxTipoVisita")
+        self.comboBoxTipoVisita.activated.connect(self.tomar_tipo_visita)
+        self.comboBoxTipoVisita.activated.connect(self.mostrar_datos_expo_temp_vig)
         
         self.label_5 = QtWidgets.QLabel(Registrarreserva)
         self.label_5.setGeometry(QtCore.QRect(30, 150, 111, 31))
@@ -132,7 +134,7 @@ class Ui_Registrarreserva(object):
 
     def retranslateUi(self, Registrarreserva):
         _translate = QtCore.QCoreApplication.translate
-        Registrarreserva.setWindowTitle(_translate("Registrarreserva", "Dialog"))
+        Registrarreserva.setWindowTitle(_translate("Registrarreserva", "Registrar reserva"))
         self.label.setText(_translate("Registrarreserva", "Escuelas"))
         self.label_2.setText(_translate("Registrarreserva", "Cantidad de visitantes"))
         self.label_3.setText(_translate("Registrarreserva", "Sedes"))
@@ -168,3 +170,12 @@ class Ui_Registrarreserva(object):
         self.comboBoxTipoVisita.clear()
         for i in gestor.gestor_reserva_visita_nuevo.buscar_tipo_visita():
             self.comboBoxTipoVisita.addItem(i)
+            
+    def tomar_tipo_visita(self):
+        for i in BD.array_tipo_visita:
+            if i.get_nombre()==self.comboBoxTipoVisita.currentText():
+                gestor.gestor_reserva_visita_nuevo.tomar_tipo_visita(i)
+
+    def mostrar_datos_expo_temp_vig(self):
+        for i in gestor.gestor_reserva_visita_nuevo.buscar_exposiciones_temp_vigentes():
+                self.tableExposiciones.setItem(x)
