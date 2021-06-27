@@ -110,6 +110,15 @@ class Ui_Registrarreserva(object):
         self.tableExposiciones.setRowCount(0)
         self.tableExposiciones.setObjectName("tableExposiciones")
         self.tableExposiciones.setColumnCount(4)
+        self.tableExposiciones.setColumnWidth(0,75)
+        self.tableExposiciones.setColumnWidth(1,274)
+        self.tableExposiciones.setColumnWidth(2,100)
+        self.tableExposiciones.setColumnWidth(3,50)
+        nombreColumnas = ("Exposicion","publico", "horario", "  ")
+        self.tableExposiciones.setHorizontalHeaderLabels(nombreColumnas)
+        self.tableExposiciones.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableExposiciones.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tableExposiciones.itemDoubleClicked.connect(self.tomar_selec_exposiciones)
         
         
         self.tableWidgetGuias = QtWidgets.QTableWidget(Registrarreserva)
@@ -186,7 +195,25 @@ class Ui_Registrarreserva(object):
             for j in range (len(expo[vector_exposicion])):
                 print(j)
                 self.tableExposiciones.setItem(vector_exposicion,j,QTableWidgetItem(str(expo[vector_exposicion][j])))
+                self.tableExposiciones.setItem(vector_exposicion,3,QTableWidgetItem('NO'))
         
     def tomar_selec_exposiciones(self):
-        exposiciones_seleccionadas=0
-        gestor.gestor_reserva_visita_nuevo.tomar_exposiciones(self,exposiciones_seleccionadas)
+        array_exposiciones = []
+        filaSeleccionada=self.tableExposiciones.selectedItems()
+        fila = filaSeleccionada[0].row()
+        if filaSeleccionada[3].text() =='NO':
+            self.tableExposiciones.setItem(fila,3,QTableWidgetItem('SI'))
+        else:
+            self.tableExposiciones.setItem(fila,3,QTableWidgetItem('NO'))
+        
+        for row in range(self.tableExposiciones.rowCount()):
+            for i in gestor.gestor_reserva_visita_nuevo.buscar_exposiciones_temp_vigentes():
+                x=self.tableExposiciones.item(row,0).text()
+                if x == i[0]:
+                    if self.tableExposiciones.item(row,3).text() == 'SI':
+                        for expo in BD.array_exposiciones:
+                            if expo.get_nombre()==x:
+                                array_exposiciones.append(expo)
+        
+        print(array_exposiciones)
+        gestor.gestor_reserva_visita_nuevo.tomar_exposiciones(array_exposiciones)

@@ -98,3 +98,4 @@ sesion1=clases.sesion.Sesion('17/06/2021', '14/06/2020', '08:02', '08:00', usuar
 array_escuelas = [escuela1,escuela2,escuela3,escuela4,escuela5]
 array_sede = [sede1,sede2]
 array_tipo_visita = [tipo_visita1,tipo_visita2]
+array_exposiciones=[exposicion1,exposicion2]
