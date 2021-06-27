@@ -109,7 +109,8 @@ class Ui_Registrarreserva(object):
         self.tableExposiciones.setAlternatingRowColors(True)
         self.tableExposiciones.setRowCount(0)
         self.tableExposiciones.setObjectName("tableExposiciones")
-        self.tableExposiciones.setColumnCount(0)
+        self.tableExposiciones.setColumnCount(4)
+        
         
         self.tableWidgetGuias = QtWidgets.QTableWidget(Registrarreserva)
         self.tableWidgetGuias.setGeometry(QtCore.QRect(30, 580, 501, 141))
@@ -178,4 +179,4 @@ class Ui_Registrarreserva(object):
 
     def mostrar_datos_expo_temp_vig(self):
         for i in gestor.gestor_reserva_visita_nuevo.buscar_exposiciones_temp_vigentes():
-                self.tableExposiciones.setItem(x)
+                self.tableExposiciones.insertRow(i[0][1])

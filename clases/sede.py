@@ -54,9 +54,7 @@ class Sede():
     def buscar_duracion_exposiciones(self):
         exposiciones = []
         for exposicion in self.exposicion:
-            x = [exposicion]
-            x.append(Exposicion.buscar_dur_extendida_obra(exposicion))
-            exposiciones.append(x)
+            exposiciones.append(Exposicion.buscar_dur_extendida_obra(exposicion))
         return exposiciones
 
     #

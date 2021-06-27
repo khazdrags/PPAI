@@ -102,8 +102,7 @@ class Exposicion():
                 nombre = self.get_nombre()
                 for publico in self.publico_destino:
                    publico_desti.append(Publico_destino.get_nombre(publico))
-                x=[nombre],publico_desti,[horario]
-                array.append(x)
+                array.append([nombre,publico_desti,horario])
         return array 
         #busca y muestra temp vigentes para sede, su publico destino y sus horarios habilidatos
 

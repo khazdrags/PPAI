@@ -131,4 +131,5 @@ print(gestor_reserva_visita_nuevo.tomar_tipo_visita(BD.tipo_visita1))
 print('\n------------------ tomar fecha hora actual')
 print(gestor_reserva_visita_nuevo.tomar_fecha_hora_actual())
 print('\n------------------buscar exposiciones temp vigentes')
-print(gestor_reserva_visita_nuevo.buscar_exposiciones_temp_vigentes())
+for i in gestor_reserva_visita_nuevo.buscar_exposiciones_temp_vigentes():
+ print(i[0])

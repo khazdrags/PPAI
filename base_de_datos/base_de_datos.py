@@ -78,7 +78,7 @@ asignacion_visita1=clases.asignacion_visita.Asignacion_visita('20/06/2021','20/0
 asignacion_visita2=clases.asignacion_visita.Asignacion_visita('20/07/2021','20/07/2021','08:00','12:00',empleado2)
 
 sede1 = clases.sede.Sede(
-    400, 80, 'sede 1', [exposicion1], [empleado1])
+    400, 80, 'sede 1', [exposicion1,exposicion2], [empleado1])
 sede2 = clases.sede.Sede(
     100, 80, 'sede 2', [exposicion1, exposicion2], [empleado2])
 
