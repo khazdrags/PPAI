@@ -103,7 +103,7 @@ class Empleado():
 
     #no anda
     def es_de_sede(self, sede_selececionada):
-        for i in sede_selececionada.empleado:
+        for i in Sede.empleado(sede_selececionada):
             if i == self:
                 return True
         else:
@@ -115,7 +115,7 @@ class Empleado():
             for franja_horaria in self.horario_empleado:
                 if Horario_empleado.disp_en_fecha_hora_reserva(franja_horaria, duracion_estimada_reserva, hora_reserva):
                     for asignacion in asignaciones:
-                        if asignacion_visita.Asignacion_visita.es_asignacion_para_fecha_hora(asignacion, hora_reserva, fecha_reserva, duracion_estimada_reserva):
+                        if Asignacion_visita.es_asignacion_para_fecha_hora(asignacion, hora_reserva, fecha_reserva, duracion_estimada_reserva):
                             return True
         else:
             return False

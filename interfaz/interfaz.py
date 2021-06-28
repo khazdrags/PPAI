@@ -108,6 +108,7 @@ class Ui_Registrarreserva(object):
         self.timeEditHora.setObjectName("timeEditHora")
         self.timeEditHora.timeChanged.connect(self.tomar_hora_reserva)
         self.timeEditHora.timeChanged.connect(self.tomar_fecha_hora_reserva)
+        self.timeEditHora.timeChanged.connect(self.mostrar_guias_disponibles)
         
         self.tableExposiciones = QtWidgets.QTableWidget(Registrarreserva)
         self.tableExposiciones.setGeometry(QtCore.QRect(30, 180, 501, 171))
@@ -139,6 +140,7 @@ class Ui_Registrarreserva(object):
         self.calendarWidget.setGridVisible(False)
         self.calendarWidget.setObjectName("calendarWidget")
         self.calendarWidget.clicked.connect(self.tomar_fecha_hora_reserva)
+        self.calendarWidget.clicked.connect(self.mostrar_guias_disponibles)
 
         self.retranslateUi(Registrarreserva)
         QtCore.QMetaObject.connectSlotsByName(Registrarreserva)
@@ -200,7 +202,7 @@ class Ui_Registrarreserva(object):
         for vector_exposicion in range (len(expo)):
             #[[exposicion 1,publico destino,horario][exposicion2,...,....]]
             for j in range (len(expo[vector_exposicion])):
-                print(j)
+                
                 self.tableExposiciones.setItem(vector_exposicion,j,QTableWidgetItem(str(expo[vector_exposicion][j])))
                 self.tableExposiciones.setItem(vector_exposicion,3,QTableWidgetItem('NO'))
         
@@ -238,8 +240,20 @@ class Ui_Registrarreserva(object):
         fecha=self.calendarWidget.selectedDate()
         fecha=fecha.toPyDate()    
         gestor.gestor_reserva_visita_nuevo.tomar_fecha_hora_reserva(datetime(fecha.year,fecha.month,fecha.day,hora.hour,hora.minute))
+        gestor.gestor_reserva_visita_nuevo.calcular_duracion_estimada_reserva()
         self.mostrar_cantidad_guias_necesarios()
 
     def mostrar_cantidad_guias_necesarios(self):
         x=gestor.gestor_reserva_visita_nuevo.calcular_cantidad_guias_necesarios()
         self.label_8.setText(("Guias      GUIAS necesarios:"+str(x)))
+    
+    def mostrar_guias_disponibles(self):
+        guias = gestor.gestor_reserva_visita_nuevo.buscar_guias_disponibles()
+        self.tableWidgetGuias.setRowCount(len(guias))
+        print('error 21')
+        for vector_exposicion in range (len(guias)):
+            #[[exposicion 1,publico destino,horario][exposicion2,...,....]]
+            for j in range (len(guias[vector_exposicion])):
+                print(j)
+                self.tableWidgetGuias.setItem(vector_exposicion,j,QTableWidgetItem(str(guias[vector_exposicion][j])))
+                self.tableWidgetGuias.setItem(vector_exposicion,3,QTableWidgetItem('NO'))
