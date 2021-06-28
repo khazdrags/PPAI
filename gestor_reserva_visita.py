@@ -98,7 +98,10 @@ class Gestor_reserva_visita:
 
     def calcular_cantidad_guias_necesarios(self):
         cant_max_guia=sede.Sede.get_cant_max_por_guia(self.sede_seleccionada)
-        return round(self.cant_seleccionada/cant_max_guia)
+        x = round(self.cant_seleccionada/cant_max_guia)
+        if x == 0:
+            x=1
+        return x
 
     #def buscar_guias_disponibles
 

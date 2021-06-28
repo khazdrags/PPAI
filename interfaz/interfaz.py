@@ -11,9 +11,13 @@ from PyQt5.QtWidgets import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 import gestor_reserva_visita as gestor
 import base_de_datos.base_de_datos as BD
+from datetime import datetime, date, time, timedelta
+
+
 
 class Ui_Registrarreserva(object):
     def setupUi(self, Registrarreserva):
+        
         Registrarreserva.setObjectName("Registrarreserva")
         Registrarreserva.resize(562, 792)
         Registrarreserva.setMinimumSize(QtCore.QSize(562, 792))
@@ -88,7 +92,7 @@ class Ui_Registrarreserva(object):
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
         self.label_8 = QtWidgets.QLabel(Registrarreserva)
-        self.label_8.setGeometry(QtCore.QRect(30, 550, 61, 21))
+        self.label_8.setGeometry(QtCore.QRect(30, 550, 201, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_8.setFont(font)
@@ -102,6 +106,8 @@ class Ui_Registrarreserva(object):
         self.timeEditHora = QtWidgets.QTimeEdit(Registrarreserva)
         self.timeEditHora.setGeometry(QtCore.QRect(400, 410, 131, 31))
         self.timeEditHora.setObjectName("timeEditHora")
+        self.timeEditHora.timeChanged.connect(self.tomar_hora_reserva)
+        self.timeEditHora.timeChanged.connect(self.tomar_fecha_hora_reserva)
         
         self.tableExposiciones = QtWidgets.QTableWidget(Registrarreserva)
         self.tableExposiciones.setGeometry(QtCore.QRect(30, 180, 501, 171))
@@ -132,6 +138,7 @@ class Ui_Registrarreserva(object):
         self.calendarWidget.setGeometry(QtCore.QRect(30, 360, 312, 183))
         self.calendarWidget.setGridVisible(False)
         self.calendarWidget.setObjectName("calendarWidget")
+        self.calendarWidget.clicked.connect(self.tomar_fecha_hora_reserva)
 
         self.retranslateUi(Registrarreserva)
         QtCore.QMetaObject.connectSlotsByName(Registrarreserva)
@@ -213,7 +220,26 @@ class Ui_Registrarreserva(object):
                     if self.tableExposiciones.item(row,3).text() == 'SI':
                         for expo in BD.array_exposiciones:
                             if expo.get_nombre()==x:
-                                array_exposiciones.append(expo)
-        
+                                array_exposiciones.append(expo)    
         print(array_exposiciones)
         gestor.gestor_reserva_visita_nuevo.tomar_exposiciones(array_exposiciones)
+    
+    def tomar_fecha_reserva(self):
+        fecha=self.calendarWidget.selectedDate()
+        fecha=fecha.toPyDate()
+    
+    def tomar_hora_reserva(self):
+        hora=self.timeEditHora.time()
+        hora=hora.toPyTime()
+    
+    def tomar_fecha_hora_reserva(self):
+        hora=self.timeEditHora.time()
+        hora=hora.toPyTime()
+        fecha=self.calendarWidget.selectedDate()
+        fecha=fecha.toPyDate()    
+        gestor.gestor_reserva_visita_nuevo.tomar_fecha_hora_reserva(datetime(fecha.year,fecha.month,fecha.day,hora.hour,hora.minute))
+        self.mostrar_cantidad_guias_necesarios()
+
+    def mostrar_cantidad_guias_necesarios(self):
+        x=gestor.gestor_reserva_visita_nuevo.calcular_cantidad_guias_necesarios()
+        self.label_8.setText(("Guias      GUIAS necesarios:"+str(x)))
