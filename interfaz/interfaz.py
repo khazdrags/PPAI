@@ -289,10 +289,9 @@ class Ui_Registrarreserva(object):
         self.msgBox = QtWidgets.QMessageBox(self)
         self.msgBox.setWindowTitle(' ')
         self.msgBox.setIcon(QMessageBox.Information)
-        self.msgBox.setText(("Se registro con exito la reserva visita nueva:\n numero de reserva:"+str(gestor.nuevo.numero_reserva)+' fecha hora: '+str(gestor.nuevo.fecha_reserva)+
-                             str(gestor.nuevo.hora_reserva)+'  Escuela: '+str(gestor.nuevo.escuela.get_nombre())))
+        self.msgBox.setText(("Se registro con exito la reserva visita nueva:\n numero de reserva:"+str(gestor.nuevo.numero_reserva)+' Fecha: '+str(gestor.nuevo.fecha_reserva)+
+                             '  Hora: '+str(gestor.nuevo.hora_reserva)+'  Escuela: '+str(gestor.nuevo.escuela.get_nombre())))
         self.retval = self.msgBox.exec_()
-        print('hola',gestor.nuevo)
         self.close()
     
     def cerrar_ventana(self):
