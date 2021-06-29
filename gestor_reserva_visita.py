@@ -28,9 +28,6 @@ class Gestor_reserva_visita:
         tipo_visita_seleccionada=''
 
     
-    #def tomar_reg_reserva_visita(self):
-        #return
-    
     def buscar_escuelas(self):
         array_contador=[]
         for i in BD.array_escuelas:
@@ -70,7 +67,6 @@ class Gestor_reserva_visita:
         self.fecha_hora_actual= datetime.now()
         return self.fecha_hora_actual
     
-    #ver fecha actual
     def buscar_exposiciones_temp_vigentes(self):
         return sede.Sede.buscar_exposiciones(self.sede_seleccionada,self.fecha_hora_actual)
 
@@ -83,13 +79,9 @@ class Gestor_reserva_visita:
     def calcular_duracion_estimada_reserva(self):
         self.duracion_estimada=time(sede.Sede.buscar_duracion_exposiciones(self.sede_seleccionada))
     
-    #ver este hay q corregir
     def sobrepaso_cap_max(self):
-        #calcular y devolver si se pasa
         return sede.Sede.buscar_reserva_para_fecha_hora(self.sede_seleccionada,self.fecha_hora_reserva)
     
-    #def verificare cantidad maxima visirantes iria como def o arriba iria y eso retornaria el true o false?
-
     def calcular_cantidad_guias_necesarios(self):
         cant_max_guia=sede.Sede.get_cant_max_por_guia(self.sede_seleccionada)
         x = round(self.cant_seleccionada/cant_max_guia)
@@ -98,13 +90,9 @@ class Gestor_reserva_visita:
         return x
 
     def buscar_guias_disponibles(self):
-        #hay q conectar los metodos anteriores aca
-        #aca hay q dividir la fecha en dos
         hora_reserva=datetime.time(self.fecha_hora_reserva)
         fecha_reserva=datetime.date(self.fecha_hora_reserva)
-        #q es ese asginaciones?
         asignaciones=BD.array_asignaciones
-        #un for i a la BD y llame a empleado?
         empleados=BD.array_empleados
         array=[]
         for i in empleados:

@@ -40,5 +40,5 @@ class Cambio_estado():
         self.estado = estado
 
     #
-    def conocer_estado(self):
-        return self.estado
+    #def conocer_estado(self):
+    #    return self.estado

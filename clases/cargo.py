@@ -18,7 +18,7 @@ class Cargo():
     def set_nombre(self, nombre):
         self.nombre = nombre
 
-    # Este metodo verifica que el cargo sea Guiad
+    # Verifica que el empleado tenga el cargo 'guia'
     def es_guia(self):
         if self.nombre == 'Guia':
             return True

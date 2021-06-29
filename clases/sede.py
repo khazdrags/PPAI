@@ -63,8 +63,6 @@ class Sede():
             return True
         return False
 
-    #esta mal... deberias calcular usando la hora de la reserva
-    #reserva q seria?
     def buscar_reserva_para_fecha_hora(self, reserva):
         cantidad_alumno = 0
         for alumno in reserva:
