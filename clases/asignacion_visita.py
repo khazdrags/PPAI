@@ -39,7 +39,7 @@ class Asignacion_visita():
     def set_empleado(self, empleado):
         self.empleado = empleado
 
-    # Corrobora que un guia no tenga asignada una reserva para la fecha y hora de la reserva a crear
+    # Este metodo corrobora que un guia no tenga asignada una reserva para la fecha y hora de la reserva a crear.
     def es_asignacion_para_fecha_hora(self, hora_reserva, fecha_reserva, duracion_estimada_reserva):
         libre = True
         if(fecha_reserva == self.fecha_inicio) and (hora_reserva == self.hora_inicio):

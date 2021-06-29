@@ -42,6 +42,6 @@ class Sesion ():
     def set_usuario(self, usuario):
         self.usuario = usuario
 
-    #
+    # Este metodo llama al metodo get_nombre de la clase usuario para obtener el usuario que tiene la sesion activa.
     def get_empleado_en_sesion(self):
         return Usuario.get_nombre(self.usuario)

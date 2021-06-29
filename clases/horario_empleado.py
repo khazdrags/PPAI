@@ -23,11 +23,10 @@ class Horario_empleado():
     def set_hora_salida(self, hora_salida):
         self.hora_salida = hora_salida
 
-
+    # Este metodo verifica que el empleado trabaja en la sede en el horario de la reserva a crear.
     def disp_en_fecha_hora_reserva(self, duracion_estimada_reserva, hora_reserva):
         bandera = False
         for i in self.hora_ingreso:
-
             if ((hora_reserva) >= i) and ((self.hora_salida[0])>hora_reserva):
                 bandera = True
                 return bandera

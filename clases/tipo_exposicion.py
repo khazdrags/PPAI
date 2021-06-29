@@ -18,7 +18,7 @@ class Tipo_exposicion():
     def set_nombre(self, nombre):
         self.nombre = nombre
 
-    #
+    # Este metodo corrobora si una exposicion es temporal.
     def es_temporal(tipo_expo):
         if tipo_expo.get_descripcion() == 'temporal':
             return True

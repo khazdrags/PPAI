@@ -20,7 +20,7 @@ class Detalle_exposicion():
     def set_obra(self, obra):
         self.obra = obra
 
-    #
+    # Este metodo llama al metodo get_duracion_extendida para obtener la duracion extendida de una obra.
     def buscar_durac_ext_obra(self):
         return Obra.get_duracion_extendida(self.obra)
 

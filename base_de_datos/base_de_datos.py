@@ -24,11 +24,11 @@ escuela4=clases.escuela.Escuela('rio cuarto','escuela4@.com', 'Ipem 152', '35838
 escuela5=clases.escuela.Escuela('berrotaran','escuela5@.com', 'San Martin', '358988484', '358444457')
 
 
-horario_empleado1 = clases.horario_empleado.Horario_empleado([time(7)], [time(22)])
-horario_empleado2 = clases.horario_empleado.Horario_empleado([time(7)], [time(22)])
-horario_empleado3 = clases.horario_empleado.Horario_empleado([time(7)], [time(22)])
-horario_empleado4 = clases.horario_empleado.Horario_empleado([time(7)], [time(22)])
-horario_empleado5 = clases.horario_empleado.Horario_empleado([time(7)], [time(22)])
+horario_empleado1 = clases.horario_empleado.Horario_empleado([time(7)], [time(11)])
+horario_empleado2 = clases.horario_empleado.Horario_empleado([time(9)], [time(22)])
+horario_empleado3 = clases.horario_empleado.Horario_empleado([time(12)], [time(17)])
+horario_empleado4 = clases.horario_empleado.Horario_empleado([time(7)], [time(10)])
+horario_empleado5 = clases.horario_empleado.Horario_empleado([time(13)], [time(22)])
 
 
 estado1=clases.estado.Estado('reserva','es reservada','reservada')

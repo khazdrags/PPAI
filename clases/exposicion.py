@@ -50,7 +50,6 @@ class Exposicion():
         return self.detalle_exposicion
 
     # Metodos Set
-
     def set_fecha_fin(self, fecha_fin):
         self.fecha_fin = fecha_fin
 
@@ -81,30 +80,25 @@ class Exposicion():
     def set_detalle_exposicion(self, detalle_exposicion):
         self.detalle_exposicion = detalle_exposicion
 
-    #
+    # Este metodo devuelve el horario de apertura y cierre de una exposicion.
     def get_horario_habilitado(self):
         inicio = self.get_hora_apertura()
         cierre = self.get_hora_cierre()
-        return 'Desde' + str(inicio) + 'Hasta ' + str(cierre)
+        return 'Desde ' + str(inicio) + ' Hasta ' + str(cierre)
 
-    #
+    # Este metodo devuelve el nombre, publico destino y horario de las exposiciones que son temporales y vigentes.
     def get_temp_vigentes(self,fecha_hora_actual):
-
         array=[]
         publico_desti = []
-        
         if Tipo_exposicion.es_temporal(self.tipo_exposicion):
-            
-            if self.fecha_fin>=fecha_hora_actual.date():
-                
+            if self.fecha_fin>=fecha_hora_actual.date(): 
                 horario = self.get_horario_habilitado()
                 nombre = self.get_nombre()
                 for publico in self.publico_destino:
                    publico_desti.append(Publico_destino.get_nombre(publico))
             return[nombre,publico_desti,horario]
                
-         
-
+    # Este metodo obtiene la duracion extendida de las obras de una exposicion.
     def buscar_dur_extendida_obra(self):  
         x= detalle.Detalle_exposicion.buscar_durac_ext_obra(self.detalle_exposicion)
         return x

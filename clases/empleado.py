@@ -101,25 +101,22 @@ class Empleado():
     def set_horario_empleado(self, horario_empleado):
         self.horario_empleado = horario_empleado
 
-    #no anda
+    # Este metodo verifica que el empleado pertenezca a la sede seleccionada.
     def es_de_sede(self, sede_selececionada):
-        print(sede_selececionada)
         for i in sede.Sede.get_empleado(sede_selececionada):
             if i == self:
                 return True
         else:
             return False
 
-    #
+    # Este metodo devuelve los empleados que son guias y trabajen en la sede seleccionada y ademas que trabajen en la hora de la reserva de 
+    # visita a crear y no tenga asignado ningun otra reserva para esa fecha y hora.
     def get_guia_disp_en_horario(self, sede_selececionada, hora_reserva, fecha_reserva, duracion_estimada_reserva, asignaciones):
         if Cargo.es_guia(self.cargo) and self.es_de_sede(sede_selececionada):
             for franja_horaria in self.horario_empleado:
                 if Horario_empleado.disp_en_fecha_hora_reserva(franja_horaria, duracion_estimada_reserva, hora_reserva):
-
                     for asignacion in asignaciones:
                         if Asignacion_visita.es_asignacion_para_fecha_hora(asignacion, hora_reserva, fecha_reserva, duracion_estimada_reserva):
-
                             return True
         else:
-
             return False

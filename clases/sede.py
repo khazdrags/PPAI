@@ -42,7 +42,7 @@ class Sede():
     def set_empleado(self, empleado):
         self.empleado = empleado
 
-    # Este metodo guarda en una lista todas las exposiciones viegentes
+    # Este metodo guarda en una lista todas las exposiciones temporales viegentes.
     def buscar_exposiciones(self,fecha_hora_actual):
         exposiciones = []
         for i in self.exposicion:
@@ -50,19 +50,20 @@ class Sede():
             exposiciones.append(exposicion_vigente)
         return exposiciones
 
-    #
+    # Este metodo nos da la duracion estimada de la reserva sumando la duracion extendida de cada obra de cada exposicion.
     def buscar_duracion_exposiciones(self):
         exposiciones = 0
         for exposicion in self.exposicion:
             exposiciones = exposiciones+(Exposicion.buscar_dur_extendida_obra(exposicion))
         return exposiciones
 
-    #
+    # Este metodo verifica que no se sobrepase la capacidad maxima permitida en la sede seleccionada.
     def verificar_cantidad_maxima_visitantes(self, cantidad_seleccionada, alumnos_reserva):
         if(cantidad_seleccionada + alumnos_reserva) <= self.cant_maxima_visitantes:
             return True
         return False
 
+    # Este metodo devuelve la cantidad de alumnos que hay en todas las reservas de una sede para una determinada fecha y hora.
     def buscar_reserva_para_fecha_hora(self, reserva):
         cantidad_alumno = 0
         for alumno in reserva:

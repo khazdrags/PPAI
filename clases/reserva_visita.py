@@ -75,7 +75,6 @@ class Rerserva_visita():
         return self.asignacion_visita
 
     # Metodo Set
-
     def set_cantidad_alumnos(self, cantidad_alumnos):
         self.cantidad_alumnos = cantidad_alumnos
 
@@ -118,13 +117,15 @@ class Rerserva_visita():
     def set_asignacion_visita(self, asignacion_visita):
         self.asignacion_visita = asignacion_visita
 
-    #
+    # Este metodo devuelve la cantidad de alumnos y la fecha y hora de todas las reservas.
     def obtener_alumnos_reserva(self):
         return ([self.get_fecha_reserva(), self.get_hora_reserva, self.get_cantidad_alumnos])
 
+    # Este metodo crea la nueva instancia de cambio de estado.
     def crear_cambio_estado(self,fecha,hora,estado):
         self.cambio_estado = c_estado.Cambio_estado('',fecha,'',hora,estado)
     
+    # Este metodo crea la nueva instancia de asignacion guia.
     def crear_asignacion_guia(self,fecha,hora,empleado):
         array=[]
         for i in empleado:
