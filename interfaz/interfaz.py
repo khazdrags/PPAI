@@ -181,9 +181,11 @@ class Ui_Registrarreserva(object):
             self.comboBoxSede.addItem(i)
             
     def tomar_sede(self):
+        
         for i in BD.array_sede:
-            if i.get_nombre() == self.comboBoxEscuela.currentText():
+            if i.get_nombre() == self.comboBoxSede.currentText():
                 gestor.gestor_reserva_visita_nuevo.tomar_sede(i)
+        
                 
     def mostrar_tipo_visita(self):
         self.comboBoxTipoVisita.clear()
@@ -250,7 +252,7 @@ class Ui_Registrarreserva(object):
     def mostrar_guias_disponibles(self):
         guias = gestor.gestor_reserva_visita_nuevo.buscar_guias_disponibles()
         self.tableWidgetGuias.setRowCount(len(guias))
-        print('error 21')
+        
         for vector_exposicion in range (len(guias)):
             #[[exposicion 1,publico destino,horario][exposicion2,...,....]]
             for j in range (len(guias[vector_exposicion])):

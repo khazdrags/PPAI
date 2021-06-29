@@ -87,7 +87,7 @@ class Gestor_reserva_visita:
         self.fecha_hora_reserva=fecha_hora_reserva
     
     def calcular_duracion_estimada_reserva(self):
-        self.duracion_estimada=sede.Sede.buscar_duracion_exposiciones(self.sede_seleccionada)
+        self.duracion_estimada=time(sede.Sede.buscar_duracion_exposiciones(self.sede_seleccionada))
     
     #ver este hay q corregir
     def sobrepaso_cap_max(self):
@@ -110,7 +110,15 @@ class Gestor_reserva_visita:
         fecha_reserva=datetime.date(self.fecha_hora_reserva)
         #q es ese asginaciones?
         asignaciones=BD.array_asignaciones
-        return empleado.Empleado.get_guia_disp_en_horario(self.empleado, self.sede_seleccionada, hora_reserva, fecha_reserva, self.duracion_estimada,asignaciones)
+        #un for i a la BD y llame a empleado?
+        empleados=BD.array_empleados
+        array=[]
+        for i in empleados:
+            if empleado.Empleado.get_guia_disp_en_horario(i, self.sede_seleccionada, hora_reserva, fecha_reserva, self.duracion_estimada,asignaciones) == True:
+                array.append(i)
+                print('verdadero')
+                print(i)
+        return array
 
     def tomar_guias(self,guias):
         self.guias_seleccionados=guias

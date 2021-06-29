@@ -42,13 +42,11 @@ publicoDestino2 = clases.publico_destino.Publico_destino(
 
 
 
-cargo1 = clases.cargo.Cargo('guia', 'guia')
+cargo1 = clases.cargo.Cargo('Guia', 'Guia')
 cargo2 = clases.cargo.Cargo('conserje', 'conserje')
 
-horario_empleado1 = clases.horario_empleado.Horario_empleado(['00:00'], [
-                                                            '16:00'])
-horario_empleado2 = clases.horario_empleado.Horario_empleado(['00:00'], [
-                                                            '17:00'])
+horario_empleado1 = clases.horario_empleado.Horario_empleado([time(7)], [time(22)])
+horario_empleado2 = clases.horario_empleado.Horario_empleado([time(7)], [time(22)])
 
 empleado1 = clases.empleado.Empleado('muñoz', 'AX2014', 23409638529, 40963852, 'cordoba', '10/05/2016',
                                      '10/05/1995', 'muñoz@hotmail.com', 'tomas', 'masculino', '54935865412', cargo1, [horario_empleado1])
@@ -65,20 +63,20 @@ detalle_exposicion1 = clases.detalle_exposicion.Detalle_exposicion(
 detalle_exposicion2 = clases.detalle_exposicion.Detalle_exposicion(
     'sala 2', obra2)
 
-exposicion1 = clases.exposicion.Exposicion(date(2022,6,20),date(2022,6,20), date(2021,6,20), date(2021,6,20), '08:00',
-                                           '21:00', 'exposicion 1', detalle_exposicion1, tipoExposicion1, [publicoDestino1, publicoDestino2])
+exposicion1 = clases.exposicion.Exposicion(date(2022,6,20),date(2022,6,20), date(2021,6,20), date(2021,6,20), time(8),
+                                           time(21), 'exposicion 1', detalle_exposicion1, tipoExposicion1, [publicoDestino1, publicoDestino2])
 
 
-exposicion2 = clases.exposicion.Exposicion(date(2022,6,20),date(2022,6,20), date(2021,6,20), date(2021,6,20), '08:00',
-                                           '21:00', 'exposicion 2', detalle_exposicion2, tipoExposicion2, [publicoDestino1,publicoDestino2])
+exposicion2 = clases.exposicion.Exposicion(date(2022,6,20),date(2022,6,20), date(2021,6,20), date(2021,6,20), time(8),
+                                           time(21), 'exposicion 2', detalle_exposicion2, tipoExposicion2, [publicoDestino1,publicoDestino2])
 
 
 
-asignacion_visita1=clases.asignacion_visita.Asignacion_visita('20/06/2021','20/06/2021','08:00','12:00',empleado1)
-asignacion_visita2=clases.asignacion_visita.Asignacion_visita('20/07/2021','20/07/2021','08:00','12:00',empleado2)
+asignacion_visita1=clases.asignacion_visita.Asignacion_visita(date(2021,6,20),date(2021,6,20),time(8),time(12),empleado1)
+asignacion_visita2=clases.asignacion_visita.Asignacion_visita(date(2021,7,20),date(2021,7,20),time(8),time(12),empleado2)
 
 sede1 = clases.sede.Sede(
-    400, 80, 'sede 1', [exposicion1,exposicion2], [empleado1])
+    400, 80, 'sede 1', [exposicion1,exposicion2], [empleado1,empleado2])
 sede2 = clases.sede.Sede(
     100, 80, 'sede 2', [exposicion1, exposicion2], [empleado2])
 
@@ -95,8 +93,17 @@ usuario1=clases.usuario.Usuario(1, 'hola', 'muñoz',empleado1)
 
 sesion1=clases.sesion.Sesion('17/06/2021', '14/06/2020', '08:02', '08:00', usuario1)
 
+
+
+
+
+
+
+
+
 array_escuelas = [escuela1,escuela2,escuela3,escuela4,escuela5]
 array_sede = [sede1,sede2]
 array_tipo_visita = [tipo_visita1,tipo_visita2]
 array_exposiciones=[exposicion1,exposicion2]
 array_asignaciones = [asignacion_visita1,asignacion_visita2]
+array_empleados=[empleado1,empleado2]

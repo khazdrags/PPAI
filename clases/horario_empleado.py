@@ -1,3 +1,4 @@
+from datetime import datetime, date, time, timedelta
 
 class Horario_empleado():
     def __init__(self, hora_ingreso, hora_salida):
@@ -21,8 +22,9 @@ class Horario_empleado():
     #
     def disp_en_fecha_hora_reserva(self, duracion_estimada_reserva, hora_reserva):
         bandera = False
-        for i in range(len(self.hora_ingreso)):
-            if (hora_reserva >= self.hora_ingreso[i]) and ((hora_reserva + duracion_estimada_reserva) <= self.hora_salida[i]):
+        for i in self.hora_ingreso:
+            
+            if ((hora_reserva) >= i) and ((hora_reserva + duracion_estimada_reserva) <=i):
                 bandera = True
                 return bandera
         return False

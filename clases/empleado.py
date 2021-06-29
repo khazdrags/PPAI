@@ -1,4 +1,4 @@
-from clases.sede import Sede
+import clases.sede as sede
 from clases.asignacion_visita import Asignacion_visita
 from clases.horario_empleado import Horario_empleado
 from clases.cargo import Cargo
@@ -103,7 +103,8 @@ class Empleado():
 
     #no anda
     def es_de_sede(self, sede_selececionada):
-        for i in Sede.empleado(sede_selececionada):
+        print(sede_selececionada)
+        for i in sede.Sede.get_empleado(sede_selececionada):
             if i == self:
                 return True
         else:
@@ -116,6 +117,8 @@ class Empleado():
                 if Horario_empleado.disp_en_fecha_hora_reserva(franja_horaria, duracion_estimada_reserva, hora_reserva):
                     for asignacion in asignaciones:
                         if Asignacion_visita.es_asignacion_para_fecha_hora(asignacion, hora_reserva, fecha_reserva, duracion_estimada_reserva):
+                            print('get guia disp TRUE')
                             return True
         else:
+            print('get guia disp FALSE')
             return False
