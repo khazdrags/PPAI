@@ -44,4 +44,4 @@ class Sesion ():
 
     #
     def get_empleado_en_sesion(self):
-        return Usuario.get_nombre(self)
+        return Usuario.get_nombre(self.usuario)

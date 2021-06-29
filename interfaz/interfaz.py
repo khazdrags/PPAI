@@ -102,6 +102,8 @@ class Ui_Registrarreserva(object):
         self.buttonBox.setGeometry(QtCore.QRect(310, 720, 221, 81))
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
+        self.buttonBox.accepted.connect(self.tomar_confirmacion)
+        self.buttonBox.rejected.connect(self.cerrar_ventana)
         
         self.timeEditHora = QtWidgets.QTimeEdit(Registrarreserva)
         self.timeEditHora.setGeometry(QtCore.QRect(400, 410, 131, 31))
@@ -131,9 +133,15 @@ class Ui_Registrarreserva(object):
         self.tableWidgetGuias = QtWidgets.QTableWidget(Registrarreserva)
         self.tableWidgetGuias.setGeometry(QtCore.QRect(30, 580, 501, 141))
         self.tableWidgetGuias.setAlternatingRowColors(True)
-        self.tableWidgetGuias.setColumnCount(0)
+        self.tableWidgetGuias.setColumnCount(3)
         self.tableWidgetGuias.setObjectName("tableWidgetGuias")
         self.tableWidgetGuias.setRowCount(0)
+        nombre_columnas_guias=('Nombre','Apellido','Seleccionado')
+        self.tableWidgetGuias.setHorizontalHeaderLabels(nombre_columnas_guias)
+        self.tableWidgetGuias.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableWidgetGuias.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tableWidgetGuias.itemDoubleClicked.connect(self.tomar_seleccion_guias)
+        
         
         self.calendarWidget = QtWidgets.QCalendarWidget(Registrarreserva)
         self.calendarWidget.setGeometry(QtCore.QRect(30, 360, 312, 183))
@@ -252,10 +260,35 @@ class Ui_Registrarreserva(object):
     def mostrar_guias_disponibles(self):
         guias = gestor.gestor_reserva_visita_nuevo.buscar_guias_disponibles()
         self.tableWidgetGuias.setRowCount(len(guias))
+        print('len guias')
+        print(len(guias))
+        for i in range(len(guias)):
+                self.tableWidgetGuias.setItem(i,0,QTableWidgetItem(guias[i].nombre))
+                self.tableWidgetGuias.setItem(i,1,QTableWidgetItem(guias[i].apellido))
+                self.tableWidgetGuias.setItem(i,2,QTableWidgetItem('NO'))
+            
+    def tomar_seleccion_guias(self):
+        array_guias = []
+        filaSeleccionada=self.tableWidgetGuias.selectedItems()
+        fila = filaSeleccionada[0].row()
+        if filaSeleccionada[2].text() =='NO':
+            self.tableWidgetGuias.setItem(fila,2,QTableWidgetItem('SI'))
+        else:
+            self.tableWidgetGuias.setItem(fila,2,QTableWidgetItem('NO'))
         
-        for vector_exposicion in range (len(guias)):
-            #[[exposicion 1,publico destino,horario][exposicion2,...,....]]
-            for j in range (len(guias[vector_exposicion])):
-                print(j)
-                self.tableWidgetGuias.setItem(vector_exposicion,j,QTableWidgetItem(str(guias[vector_exposicion][j])))
-                self.tableWidgetGuias.setItem(vector_exposicion,3,QTableWidgetItem('NO'))
+        for row in range(self.tableWidgetGuias.rowCount()):
+            for i in gestor.gestor_reserva_visita_nuevo.buscar_guias_disponibles():
+                x=self.tableWidgetGuias.item(row,0).text()
+                if x == i.nombre:
+                    if self.tableWidgetGuias.item(row,2).text() == 'SI':
+                     array_guias.append(i)    
+        print(array_guias)
+        gestor.gestor_reserva_visita_nuevo.tomar_guias(array_guias)
+        
+    def tomar_confirmacion(self):
+        gestor.gestor_reserva_visita_nuevo.tomar_confirmacion()
+        self.close()
+    
+    def cerrar_ventana(self):
+        self.close()
+        

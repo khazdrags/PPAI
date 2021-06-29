@@ -17,9 +17,9 @@ import clases.sesion
 from datetime import datetime, date, time, timedelta
 import calendar
 
-estado1=('reserva','es reservada','reservada')
-estado2=('obra','es obra ','pendiente de reparacion')
-estado3=('reserva','es reservada','pendiente de confirmacion')
+estado1=clases.estado.Estado('reserva','es reservada','reservada')
+estado2=clases.estado.Estado('obra','es obra ','pendiente de reparacion')
+estado3=clases.estado.Estado('reserva','es reservada','pendiente de confirmacion')
 
 cambioEstado1=clases.cambio_estado.Cambio_estado('20/06/2021','25/06/2021', '08:00','18:00',estado1)
 cambioEstado2=clases.cambio_estado.Cambio_estado('20/07/2021','20/09/2021', '08:00','18:00',estado3)
@@ -86,8 +86,8 @@ escuela3=clases.escuela.Escuela('cordoba','escuela2@.com', 'escuela n3', '358988
 escuela4=clases.escuela.Escuela('rio cuarto','escuela4@.com', 'escuela n4', '358388382', '358544457')
 escuela5=clases.escuela.Escuela('berrotaran','escuela5@.com', 'escuela n5', '358988484', '358444457')
 
-tipo_visita1=clases.tipo_visita.Tipo_Visita('escolar')
-tipo_visita2=clases.tipo_visita.Tipo_Visita('tecnica')
+tipo_visita1=clases.tipo_visita.Tipo_Visita('completa')
+tipo_visita2=clases.tipo_visita.Tipo_Visita('por exposicion')
 
 usuario1=clases.usuario.Usuario(1, 'hola', 'muñoz',empleado1)
 
@@ -107,3 +107,5 @@ array_tipo_visita = [tipo_visita1,tipo_visita2]
 array_exposiciones=[exposicion1,exposicion2]
 array_asignaciones = [asignacion_visita1,asignacion_visita2]
 array_empleados=[empleado1,empleado2]
+array_reservas = []
+array_estado = [estado1,estado2,estado3]

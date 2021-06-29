@@ -27,10 +27,10 @@ class Estado():
 
     # Este metodo verifica si el Ambito del estado es Reserva.
     def es_ambito_reserva(self):
-        if self.ambito == 'Resrva':
+        if self.ambito == 'reserva':
             return True
 
     # Este metodo verifica que el estado sea Pendiente de confirmacion.
     def es_pendiente_de_confirmacion(self):
-        if self.nombre == 'Pendiente de confirmacion':
+        if self.nombre == 'pendiente de confirmacion':
             return True

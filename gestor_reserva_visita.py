@@ -17,22 +17,16 @@ class Gestor_reserva_visita:
         confirmado=False
         duracion_estimada=''
         empleados_disponibles=''
-        
         escuela_seleccionada=''
         estado=''
         exposiciones_seleccionadas=''
         fecha_hora_actual=''
         fecha_hora_reserva=''
         guias_seleccionados=''
-        mayor=''
-        #mayor seria mejor como ultima reserva o en el mejor caso usar el nro_reserva+1
         nro_reserva=''
-        #reservaVisitaNueva=''   creo q no iria ya q carece de sentido
         sede_seleccionada=''
         tipo_visita_seleccionada=''
-        #falta sesion
-        #esto no se si estaria encapsulado o si lo buscamos despues
-        sesion=''
+
     
     #def tomar_reg_reserva_visita(self):
         #return
@@ -125,27 +119,36 @@ class Gestor_reserva_visita:
     
     def tomar_confirmacion(self): 
         self.confirmado=True
+        self.buscar_empleado_logueado()
+        self.buscar_ultimo_numero_reserva()
+        self.buscar_estado_reserva()
+        self.registrar_reserva()
 
     def buscar_empleado_logueado(self):
-        return sesion.Sesion.get_empleado_en_sesion(self.sesion)
+        return sesion.Sesion.get_empleado_en_sesion(BD.sesion1)
     
     def buscar_ultimo_numero_reserva(self):
         mayor=0
-        for i in self.array_reservas:
+        for i in BD.array_reservas:
             x=i.getNumeroReserva()
             if mayor<x:
                 mayor=x
-        return mayor
+        self.nro_reserva=mayor+1
 
     def buscar_estado_reserva(self):
-        for i in self.array_estado:
-            ambito=i.esAmbitoReserva()
-            pendiente=i.esPendienteDeConfirmacion()
+        for i in BD.array_estado:
+            ambito=i.es_ambito_reserva()
+            pendiente=i.es_pendiente_de_confirmacion()
             if ambito ==True and pendiente==True:
                 self.estado=i
     
-    #def registrar_reserva(self):
-    #    reserva_visita.Reserva_visita(self.cant_seleccionada, self.cant_seleccionada, self.duracion_estimada, self.fecha_hora_actual, self.fecha_reserva,self.hora_reserva, '', '', (mayor+1),self.sede_seleccionada)
+    def registrar_reserva(self):
+        if self.confirmado:
+            fecha_reserva=datetime(self.fecha_hora_reserva.year,self.fecha_hora_reserva.month,self.fecha_hora_reserva.day)
+            hora_reserva=time(self.fecha_hora_reserva.hour,self.fecha_hora_reserva.minute)
+            
+            nuevo=reserva_visita.Rerserva_visita(self.cant_seleccionada,self.cant_seleccionada, self.duracion_estimada, self.fecha_hora_actual, fecha_reserva,
+                 '', '', hora_reserva, self.nro_reserva, self.escuela_seleccionada, self.estado,self.sede_seleccionada, self.exposiciones_seleccionadas, self.guias_seleccionados,'')
 
 gestor_reserva_visita_nuevo=Gestor_reserva_visita()
 print('\n------------------buscar escuelas')
