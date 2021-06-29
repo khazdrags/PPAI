@@ -1,6 +1,5 @@
 from clases.publico_destino import Publico_destino
 from clases.tipo_exposicion import Tipo_exposicion
-'''checar esto'''
 import clases.detalle_exposicion as detalle
 from datetime import datetime, date, time, timedelta
 
@@ -16,7 +15,7 @@ class Exposicion():
         self.nombre = nombre
         self.tipo_exposicion = tipo_exposicion
         self.publico_destino = publico_destino
-        '''checar esto'''
+
         self.detalle_exposicion = detalle_exposicion
 
     # Metodos Get
@@ -90,7 +89,7 @@ class Exposicion():
 
     #
     def get_temp_vigentes(self,fecha_hora_actual):
-        '''horario no tiene sentido aca'''
+
         array=[]
         publico_desti = []
         
@@ -105,9 +104,7 @@ class Exposicion():
             return[nombre,publico_desti,horario]
                
          
-        #busca y muestra temp vigentes para sede, su publico destino y sus horarios habilidatos
 
-    '''checar esto'''
     def buscar_dur_extendida_obra(self):  
         x= detalle.Detalle_exposicion.buscar_durac_ext_obra(self.detalle_exposicion)
         return x

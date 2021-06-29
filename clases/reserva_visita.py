@@ -1,7 +1,10 @@
+import clases.cambio_estado as c_estado
+from datetime import datetime, time
+import clases.asignacion_visita as a_visita
 
 class Rerserva_visita():
     def __init__(self, cantidad_alumnos, cantidad_alumno_confirmada, duracion_estimada, fecha_hora_creacion, fecha_reserva,
-                 hora_final_real, hora_inicio_real, hora_reserva, numero_reserva, escuela, cambio_estado, sede, nombre_exposicion, empleado, asignacion_visita):
+                 hora_final_real, hora_inicio_real, hora_reserva, numero_reserva, escuela, estado, sede, nombre_exposicion, empleado, asignacion_visita):
         self.cantidad_alumnos = cantidad_alumnos
         self.cantidad_alumno_confirmada = cantidad_alumno_confirmada
         self.duracion_estimada = duracion_estimada
@@ -12,12 +15,18 @@ class Rerserva_visita():
         self.hora_reserva = hora_reserva
         self.numero_reserva = numero_reserva
         self.escuela = escuela
-        self.cambio_estado = cambio_estado
         self.sede = sede
         self.nombre_exposicion = nombre_exposicion
         self.empleado = empleado
-        self.asignacion_visita = asignacion_visita
-
+        
+        
+        fecha=datetime(self.fecha_hora_creacion.year,self.fecha_hora_creacion.month, self.fecha_hora_creacion.day)
+        hora=time(self.fecha_hora_creacion.hour,self.fecha_hora_creacion.minute)
+        
+        self.crear_cambio_estado(fecha,hora,estado)
+        
+        self.crear_asignacion_guia(fecha,hora,empleado)
+        
     # Metodo Get
     def get_cantidad_alumnos(self):
         return self.cantidad_alumnos
@@ -111,3 +120,12 @@ class Rerserva_visita():
     #
     def obtener_alumnos_reserva(self):
         return ([self.get_fecha_reserva(), self.get_hora_reserva, self.get_cantidad_alumnos])
+
+    def crear_cambio_estado(self,fecha,hora,estado):
+        self.cambio_estado = c_estado.Cambio_estado('',fecha,'',hora,estado)
+    
+    def crear_asignacion_guia(self,fecha,hora,empleado):
+        array=[]
+        for i in empleado:
+            array.append(a_visita('',fecha,'',hora,i))
+        self.asignacion_visita=array

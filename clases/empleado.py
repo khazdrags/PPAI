@@ -115,11 +115,11 @@ class Empleado():
         if Cargo.es_guia(self.cargo) and self.es_de_sede(sede_selececionada):
             for franja_horaria in self.horario_empleado:
                 if Horario_empleado.disp_en_fecha_hora_reserva(franja_horaria, duracion_estimada_reserva, hora_reserva):
-                    print('get guia disp tRUE')
+
                     for asignacion in asignaciones:
                         if Asignacion_visita.es_asignacion_para_fecha_hora(asignacion, hora_reserva, fecha_reserva, duracion_estimada_reserva):
-                            print('get guia disp TRUE')
+
                             return True
         else:
-            print('get guia disp FALSE')
+
             return False

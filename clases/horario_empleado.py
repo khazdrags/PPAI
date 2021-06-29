@@ -26,8 +26,6 @@ class Horario_empleado():
 
     def disp_en_fecha_hora_reserva(self, duracion_estimada_reserva, hora_reserva):
         bandera = False
-       # formato = "%H:%M:%S"
-        #tiempo = datetime.strptime(str(hora_reserva.hour), formato) + datetime.strptime(str(duracion_estimada_reserva.hour), formato)
         for i in self.hora_ingreso:
 
             if ((hora_reserva) >= i) and ((self.hora_salida[0])>hora_reserva):

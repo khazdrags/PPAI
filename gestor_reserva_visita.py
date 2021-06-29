@@ -149,24 +149,5 @@ class Gestor_reserva_visita:
             
             nuevo=reserva_visita.Rerserva_visita(self.cant_seleccionada,self.cant_seleccionada, self.duracion_estimada, self.fecha_hora_actual, fecha_reserva,
                  '', '', hora_reserva, self.nro_reserva, self.escuela_seleccionada, self.estado,self.sede_seleccionada, self.exposiciones_seleccionadas, self.guias_seleccionados,'')
-
-gestor_reserva_visita_nuevo=Gestor_reserva_visita()
-print('\n------------------buscar escuelas')
-print(gestor_reserva_visita_nuevo.buscar_escuelas())
-print('\n------------------tomar escuela')
-print(gestor_reserva_visita_nuevo.tomar_escuela(BD.escuela1))
-print('\n------------------tomar cantidad')
-print(gestor_reserva_visita_nuevo.tomar_cant_visitantes(50))
-print('\n------------------buscar sede')
-print(gestor_reserva_visita_nuevo.buscar_sede())
-print('\n------------------tomar sede')
-print(gestor_reserva_visita_nuevo.tomar_sede(BD.sede1))
-print('\n------------------buscar tipo visita')
-print(gestor_reserva_visita_nuevo.buscar_tipo_visita())
-print('\n------------------ tomar tipo visita')
-print(gestor_reserva_visita_nuevo.tomar_tipo_visita(BD.tipo_visita1))
-print('\n------------------ tomar fecha hora actual')
-print(gestor_reserva_visita_nuevo.tomar_fecha_hora_actual())
-print('\n------------------buscar exposiciones temp vigentes')
-print(gestor_reserva_visita_nuevo.buscar_exposiciones_temp_vigentes())
+            print(nuevo)
 
