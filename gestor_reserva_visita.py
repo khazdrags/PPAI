@@ -149,5 +149,6 @@ class Gestor_reserva_visita:
             
             nuevo=reserva_visita.Rerserva_visita(self.cant_seleccionada,self.cant_seleccionada, self.duracion_estimada, self.fecha_hora_actual, fecha_reserva,
                  '', '', hora_reserva, self.nro_reserva, self.escuela_seleccionada, self.estado,self.sede_seleccionada, self.exposiciones_seleccionadas, self.guias_seleccionados,'')
-            print(nuevo)
-
+    
+gestor_reserva_visita_nuevo=Gestor_reserva_visita()
+gestor_reserva_visita_nuevo.tomar_fecha_hora_actual()

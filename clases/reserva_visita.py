@@ -2,6 +2,7 @@ import clases.cambio_estado as c_estado
 from datetime import datetime, time
 import clases.asignacion_visita as a_visita
 
+
 class Rerserva_visita():
     def __init__(self, cantidad_alumnos, cantidad_alumno_confirmada, duracion_estimada, fecha_hora_creacion, fecha_reserva,
                  hora_final_real, hora_inicio_real, hora_reserva, numero_reserva, escuela, estado, sede, nombre_exposicion, empleado, asignacion_visita):
@@ -127,5 +128,5 @@ class Rerserva_visita():
     def crear_asignacion_guia(self,fecha,hora,empleado):
         array=[]
         for i in empleado:
-            array.append(a_visita('',fecha,'',hora,i))
+            array.append(a_visita.Asignacion_visita('',fecha,'',hora,i))
         self.asignacion_visita=array
