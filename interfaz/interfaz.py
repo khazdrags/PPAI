@@ -183,6 +183,7 @@ class Ui_Registrarreserva(object):
         gestor.gestor_reserva_visita_nuevo.tomar_cant_visitantes(self.spinBoxCantVisit.value())
     
     def mostrar_sedes(self):
+        #aca hay q poner q verifique q sea mayor a null las sedes
         self.comboBoxSede.clear()
         for i in gestor.gestor_reserva_visita_nuevo.buscar_sede():
             self.comboBoxSede.addItem(i)
@@ -231,6 +232,7 @@ class Ui_Registrarreserva(object):
                         for expo in BD.array_exposiciones:
                             if expo.get_nombre()==x:
                                 array_exposiciones.append(expo)    
+        #print(array_exposiciones)
         gestor.gestor_reserva_visita_nuevo.tomar_exposiciones(array_exposiciones)
     
     def tomar_fecha_reserva(self):
@@ -257,6 +259,8 @@ class Ui_Registrarreserva(object):
     def mostrar_guias_disponibles(self):
         guias = gestor.gestor_reserva_visita_nuevo.buscar_guias_disponibles()
         self.tableWidgetGuias.setRowCount(len(guias))
+        #print('len guias')
+        #print(len(guias))
         for i in range(len(guias)):
                 self.tableWidgetGuias.setItem(i,0,QTableWidgetItem(guias[i].nombre))
                 self.tableWidgetGuias.setItem(i,1,QTableWidgetItem(guias[i].apellido))
@@ -277,10 +281,18 @@ class Ui_Registrarreserva(object):
                 if x == i.nombre:
                     if self.tableWidgetGuias.item(row,2).text() == 'SI':
                      array_guias.append(i)    
+        
         gestor.gestor_reserva_visita_nuevo.tomar_guias(array_guias)
         
     def tomar_confirmacion(self):
         gestor.gestor_reserva_visita_nuevo.tomar_confirmacion()
+        self.msgBox = QtWidgets.QMessageBox(self)
+        self.msgBox.setWindowTitle(' ')
+        self.msgBox.setIcon(QMessageBox.Information)
+        self.msgBox.setText(("Se registro con exito la reserva visita nueva:\n numero de reserva:"+str(gestor.nuevo.numero_reserva)+' fecha hora: '+str(gestor.nuevo.fecha_reserva)+
+                             str(gestor.nuevo.hora_reserva)+'  Escuela: '+str(gestor.nuevo.escuela.get_nombre())))
+        self.retval = self.msgBox.exec_()
+        print('hola',gestor.nuevo)
         self.close()
     
     def cerrar_ventana(self):
