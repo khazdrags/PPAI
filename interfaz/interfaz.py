@@ -170,41 +170,47 @@ class Ui_Registrarreserva(object):
         self.label_7.setText(_translate("Registrarreserva", "Hora"))
         self.label_8.setText(_translate("Registrarreserva", "Guias"))
 
+
+    #buscas las escuelas y las muestra en el combobox
     def mostrar_escuelas(self):
         for i in gestor.gestor_reserva_visita_nuevo.buscar_escuelas():
             self.comboBoxEscuela.addItem(i)
-            
+    
+    #toma la seleccion de escuela y se la envia al gestor    
     def tomar_seleccion_escuela(self):
         for i in BD.array_escuelas:
             if i.get_nombre() == self.comboBoxEscuela.currentText():
                 gestor.gestor_reserva_visita_nuevo.tomar_escuela(i)
     
+    #toma la cantidad de visitantes y se la envia al gestor
     def tomar_cantidad_visitantes(self):
         gestor.gestor_reserva_visita_nuevo.tomar_cant_visitantes(self.spinBoxCantVisit.value())
     
+    #buscas las sede y las muestra en el combobox
     def mostrar_sedes(self):
-        #aca hay q poner q verifique q sea mayor a null las sedes
         self.comboBoxSede.clear()
         for i in gestor.gestor_reserva_visita_nuevo.buscar_sede():
             self.comboBoxSede.addItem(i)
-            
+    
+    #toma la seleccion de sede y se la envia al gestor         
     def tomar_sede(self):
-        
         for i in BD.array_sede:
             if i.get_nombre() == self.comboBoxSede.currentText():
                 gestor.gestor_reserva_visita_nuevo.tomar_sede(i)
         
-                
+    #buscas las tipo visita y las muestra en el combobox         
     def mostrar_tipo_visita(self):
         self.comboBoxTipoVisita.clear()
         for i in gestor.gestor_reserva_visita_nuevo.buscar_tipo_visita():
             self.comboBoxTipoVisita.addItem(i)
-            
+    
+    #toma la seleccion de tipo de visita y se la envia al gestor
     def tomar_tipo_visita(self):
         for i in BD.array_tipo_visita:
             if i.get_nombre()==self.comboBoxTipoVisita.currentText():
                 gestor.gestor_reserva_visita_nuevo.tomar_tipo_visita(i)
 
+    #buscas las tipo visita y las muestra en la tabla (QTableWidget)  
     def mostrar_datos_expo_temp_vig(self):
         expo = gestor.gestor_reserva_visita_nuevo.buscar_exposiciones_temp_vigentes()
         self.tableExposiciones.setRowCount(len(expo))
@@ -214,7 +220,8 @@ class Ui_Registrarreserva(object):
                 
                 self.tableExposiciones.setItem(vector_exposicion,j,QTableWidgetItem(str(expo[vector_exposicion][j])))
                 self.tableExposiciones.setItem(vector_exposicion,3,QTableWidgetItem('NO'))
-        
+    
+    #toma la seleccion de las exposiciones y la envia al gestor  
     def tomar_selec_exposiciones(self):
         array_exposiciones = []
         filaSeleccionada=self.tableExposiciones.selectedItems()
@@ -232,17 +239,18 @@ class Ui_Registrarreserva(object):
                         for expo in BD.array_exposiciones:
                             if expo.get_nombre()==x:
                                 array_exposiciones.append(expo)    
-        #print(array_exposiciones)
         gestor.gestor_reserva_visita_nuevo.tomar_exposiciones(array_exposiciones)
     
+    #toma la fecha de la reserva
     def tomar_fecha_reserva(self):
         fecha=self.calendarWidget.selectedDate()
         fecha=fecha.toPyDate()
-    
+    #toma la hora de la reserva
     def tomar_hora_reserva(self):
         hora=self.timeEditHora.time()
         hora=hora.toPyTime()
     
+    #envia la fehca y hora de la reserva al gestor
     def tomar_fecha_hora_reserva(self):
         hora=self.timeEditHora.time()
         hora=hora.toPyTime()
@@ -252,20 +260,21 @@ class Ui_Registrarreserva(object):
         gestor.gestor_reserva_visita_nuevo.calcular_duracion_estimada_reserva()
         self.mostrar_cantidad_guias_necesarios()
 
+    #muestra la cantidad de guias necesarios  
     def mostrar_cantidad_guias_necesarios(self):
         x=gestor.gestor_reserva_visita_nuevo.calcular_cantidad_guias_necesarios()
         self.label_8.setText(("Guias      GUIAS necesarios:"+str(x)))
     
+    #busca los guias y las muestra en la tabla (QTableWidget)  
     def mostrar_guias_disponibles(self):
         guias = gestor.gestor_reserva_visita_nuevo.buscar_guias_disponibles()
         self.tableWidgetGuias.setRowCount(len(guias))
-        #print('len guias')
-        #print(len(guias))
         for i in range(len(guias)):
                 self.tableWidgetGuias.setItem(i,0,QTableWidgetItem(guias[i].nombre))
                 self.tableWidgetGuias.setItem(i,1,QTableWidgetItem(guias[i].apellido))
                 self.tableWidgetGuias.setItem(i,2,QTableWidgetItem('NO'))
-            
+    
+    #toma la seleccion de guias y lo envia al gestor   
     def tomar_seleccion_guias(self):
         array_guias = []
         filaSeleccionada=self.tableWidgetGuias.selectedItems()
@@ -283,7 +292,8 @@ class Ui_Registrarreserva(object):
                      array_guias.append(i)    
         
         gestor.gestor_reserva_visita_nuevo.tomar_guias(array_guias)
-        
+    
+    #toma la confirmacion al apretar el boton OK 
     def tomar_confirmacion(self):
         gestor.gestor_reserva_visita_nuevo.tomar_confirmacion()
         self.msgBox = QtWidgets.QMessageBox(self)
@@ -294,6 +304,7 @@ class Ui_Registrarreserva(object):
         self.retval = self.msgBox.exec_()
         self.close()
     
+    #boton para cancelar el caso de uso
     def cerrar_ventana(self):
         self.close()
         
